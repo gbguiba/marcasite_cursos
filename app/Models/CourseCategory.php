@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Course;
 
 class CourseCategory extends Model {
 
@@ -13,5 +15,11 @@ class CourseCategory extends Model {
     public $incrementing = false;
 
     public $timestamps = true;
+
+    public function courses(): HasMany {
+
+        return $this->hasMany(Course::class, 'course_category_id', 'id');
+
+    }
 
 }
