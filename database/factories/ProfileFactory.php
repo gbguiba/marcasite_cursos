@@ -14,7 +14,7 @@ class ProfileFactory extends Factory {
             'id' => (string) Str::uuid(),
             'ip' => fake()->ipv4(),
             'user_agent' => fake()->userAgent(),
-            'user_id' => User::factory(),
+            'user_id' => null,
             'name' => fake()->name(),
             'photo_path' => null,
             'cpf' => fake()->cpf(false),

@@ -16,16 +16,10 @@ class ProfileSeeder extends Seeder {
 
             foreach (User::all() as $user) {
 
-                $profile = new Profile();
-                $profile->id = (string) Str::uuid();
-                $profile->ip = fake()->ipv4();
-                $profile->user_agent = fake()->userAgent();
-                $profile->user_id = $user->id;
-                $profile->name = fake()->name();
-                $profile->photo_path = null;
-                $profile->cpf = fake()->cpf(false);
-                $profile->save();
-
+                Profile::factory()->count(1)->create([
+                    'user_id' => $user->id,
+                ]);
+                
             }
         
         });
