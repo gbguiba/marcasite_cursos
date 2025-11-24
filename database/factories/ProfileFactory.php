@@ -12,10 +12,10 @@ class ProfileFactory extends Factory {
 
         return [
             'id' => (string) Str::uuid(),
-            'ip' => $this->faker->ipv4(),
-            'user_agent' => $this->faker->userAgent(),
+            'ip' => fake()->ipv4(),
+            'user_agent' => fake()->userAgent(),
             'user_id' => User::factory(),
-            'name' => $this->faker->name(),
+            'name' => fake()->name(),
             'photo_path' => null,
             'cpf' => fake()->cpf(false),
         ];

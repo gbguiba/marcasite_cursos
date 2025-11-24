@@ -13,10 +13,10 @@ class UserFactory extends Factory {
 
         return [
             'id' => (string) Str::uuid(),
-            'ip' => $this->faker->ipv4(),
-            'user_agent' => $this->faker->userAgent(),
+            'ip' => fake()->ipv4(),
+            'user_agent' => fake()->userAgent(),
             'type' => 'user',
-            'email' => $this->faker->unique()->safeEmail(),
+            'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('123456'),
             'email_verified_at' => Carbon::now(),
             'active' => true,
