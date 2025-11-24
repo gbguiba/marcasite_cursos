@@ -19,7 +19,7 @@ class UserFactory extends Factory {
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('123456'),
             'email_verified_at' => Carbon::now(),
-            'active' => true,
+            'active' => fake()->boolean(),
         ];
 
     }

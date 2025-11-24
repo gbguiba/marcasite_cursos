@@ -14,7 +14,7 @@ class CourseCategoryFactory extends Factory {
             'ip' => fake()->ipv4(),
             'user_agent' => fake()->userAgent(),
             'name' => fake()->words(2, true),
-            'active' => 1,
+            'active' => fake()->boolean(),
         ];
     
     }
