@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Payment;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Enrollment extends Model {
 
@@ -30,6 +32,12 @@ class Enrollment extends Model {
         
         return $this->belongsTo(Course::class, 'course_id', 'id');
     
+    }
+
+    public function payments(): HasMany {
+        
+        return $this->hasMany(Payment::class, 'enrollment_id', 'id');
+
     }
 
 }
