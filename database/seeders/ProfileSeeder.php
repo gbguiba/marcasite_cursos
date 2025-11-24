@@ -12,11 +12,9 @@ class ProfileSeeder extends Seeder {
 
     public function run(): void {
 
-        $users = User::all();
+        DB::transaction(function(): void {
 
-        DB::transaction(function() use($users): void {
-
-            foreach ($users as $user) {
+            foreach (User::all() as $user) {
 
                 $profile = new Profile();
                 $profile->id = (string) Str::uuid();
