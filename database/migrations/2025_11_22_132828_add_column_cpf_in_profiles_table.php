@@ -10,7 +10,7 @@ return new class extends Migration {
 
         Schema::table('profiles', function (Blueprint $table) {
 
-            $table->string('cpf');
+            $table->string('cpf')->unique();
 
         });
 
