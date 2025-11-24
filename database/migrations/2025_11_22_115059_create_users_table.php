@@ -19,7 +19,7 @@ return new class extends Migration {
 
             $table->string('name');
             $table->enum('type', ['user', 'admin'])->default('user');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('photo_path')->nullable();
 
