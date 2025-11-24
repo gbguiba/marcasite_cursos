@@ -16,9 +16,15 @@ class ProfileSeeder extends Seeder {
 
             foreach (User::all() as $user) {
 
+                $newName = fake()->name();
+
                 Profile::factory()->count(1)->create([
                     'user_id' => $user->id,
+                    'name' => $newName,
                 ]);
+
+                $user->email = Str::slug($newName, '.') . '@example.com';
+                $user->save();
                 
             }
         

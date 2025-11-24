@@ -15,7 +15,7 @@ class ProfileFactory extends Factory {
             'ip' => fake()->ipv4(),
             'user_agent' => fake()->userAgent(),
             'user_id' => null,
-            'name' => fake()->name(),
+            'name' => null,
             'photo_path' => null,
             'cpf' => fake()->cpf(false),
         ];
