@@ -8,6 +8,7 @@ use App\Models\CourseCategory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\CourseMaterial;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Enrollment;
 
 class Course extends Model {
 
@@ -30,6 +31,12 @@ class Course extends Model {
     public function courseMaterial(): HasMany {
         
         return $this->hasMany(CourseMaterial::class, 'course_id', 'id');
+
+    }
+
+    public function enrollments(): HasMany {
+
+        return $this->hasMany(Enrollment::class, 'course_id', 'id');
 
     }
 
