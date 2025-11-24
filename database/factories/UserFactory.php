@@ -15,7 +15,7 @@ class UserFactory extends Factory {
             'id' => (string) Str::uuid(),
             'ip' => fake()->ipv4(),
             'user_agent' => fake()->userAgent(),
-            'type' => 'user',
+            'type' => null,
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('123456'),
             'email_verified_at' => Carbon::now(),

@@ -14,19 +14,14 @@ class UserSeeder extends Seeder {
     public function run(): void {
         
         DB::transaction(function(): void {
-
-            $admin = new User();
-            $admin->id = (string) Str::uuid();
-            $admin->ip = fake()->ipv4();
-            $admin->user_agent = fake()->userAgent();
-            $admin->type = 'admin';
-            $admin->email = fake()->unique()->safeEmail();
-            $admin->password = Hash::make('123456');
-            $admin->email_verified_at = Carbon::now();
-            $admin->active = true;
-            $admin->save();
             
-            User::factory()->count(15)->create();
+            User::factory()->count(1)->create([
+                'type' => 'admin',
+            ]);
+
+            User::factory()->count(15)->create([
+                'type' => 'user',
+            ]);
         
         });
     
