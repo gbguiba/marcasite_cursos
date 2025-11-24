@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Course;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CourseMaterial extends Model {
+
+    use HasFactory;
 
     protected $table = 'course_materials';
     

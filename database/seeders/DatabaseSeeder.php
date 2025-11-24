@@ -9,6 +9,7 @@ use Database\Seeders\UserSeeder;
 use Database\Seeders\ProfileSeeder;
 use Database\Seeders\CourseCategorySeeder;
 use Database\Seeders\CourseSeeder;
+use Database\Seeders\CourseMaterialSeeder;
 
 class DatabaseSeeder extends Seeder {
     
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder {
             ProfileSeeder::class,
             CourseCategorySeeder::class,
             CourseSeeder::class,
+            CourseMaterialSeeder::class,
         ]);
     
     }
