@@ -16,7 +16,7 @@ class CourseFactory extends Factory {
             'ip' => fake()->ipv4(),
             'user_agent' => fake()->userAgent(),
             'name' => fake()->sentence(3),
-            'course_category_id' => CourseCategory::factory(),
+            'course_category_id' => null,
             'price' => fake()->randomFloat(2, 100, 1500),
             'places' => fake()->numberBetween(10, 500),
             'registration_start' => fake()->dateTimeBetween(Carbon::now(), Carbon::now()->addDays(10)),
