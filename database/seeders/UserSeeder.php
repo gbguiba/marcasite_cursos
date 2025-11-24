@@ -17,10 +17,10 @@ class UserSeeder extends Seeder {
 
             $admin = new User();
             $admin->id = (string) Str::uuid();
-            $admin->ip = '127.0.0.1';
-            $admin->user_agent = 'Laravel Seeder Script';
+            $admin->ip = fake()->ipv4();
+            $admin->user_agent = fake()->userAgent();
             $admin->type = 'admin';
-            $admin->email = 'admin@email.com';
+            $admin->email = fake()->unique()->safeEmail();
             $admin->password = Hash::make('123456');
             $admin->email_verified_at = Carbon::now();
             $admin->active = true;
