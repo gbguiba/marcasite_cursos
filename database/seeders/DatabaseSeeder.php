@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\ProfileSeeder;
+use Database\Seeders\CourseCategorySeeder;
 
 class DatabaseSeeder extends Seeder {
     
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder {
         $this->call([
             UserSeeder::class,
             ProfileSeeder::class,
+            CourseCategorySeeder::class,
         ]);
     
     }
