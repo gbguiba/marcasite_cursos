@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\CourseCategory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\CourseMaterial;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model {
+
+    use HasFactory;
 
     protected $table = 'courses';
 
