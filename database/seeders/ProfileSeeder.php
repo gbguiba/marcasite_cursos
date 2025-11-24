@@ -25,7 +25,7 @@ class ProfileSeeder extends Seeder {
                 $profile->user_id = $user->id;
                 $profile->name = fake()->name();
                 $profile->photo_path = null;
-                $profile->cpf = fake()->numerify('###########');
+                $profile->cpf = fake()->cpf(false);
                 $profile->save();
 
             }

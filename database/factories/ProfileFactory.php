@@ -17,7 +17,7 @@ class ProfileFactory extends Factory {
             'user_id' => User::factory(),
             'name' => $this->faker->name(),
             'photo_path' => null,
-            'cpf' => $this->faker->numerify('###########'),
+            'cpf' => fake()->cpf(false),
         ];
 
     }
