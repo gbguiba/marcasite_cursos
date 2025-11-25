@@ -12,10 +12,14 @@ class UserController extends Controller {
 
     public function index(Request $request): AnonymousResourceCollection {
         
-        $users = User::with('profile')->paginate(1);
-        
-        return UserResource::collection($users);
+        return UserResource::collection(User::with('profile')->paginate(1));
     
+    }
+
+    public function show(Request $request, User $user): UserResource {
+
+        return new UserResource($user->load('profile'));
+
     }
 
 }
