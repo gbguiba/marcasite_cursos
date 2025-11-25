@@ -32,7 +32,7 @@ class UserController extends Controller {
         $user->delete();
 
         return response()->json([
-            'message' => 'Usuário excluído.',
+            'message' => 'Usuário excluído com sucesso.',
         ], 200);
 
     }
