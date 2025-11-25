@@ -20,6 +20,10 @@ class CourseCategory extends Model {
 
     public $timestamps = true;
 
+    protected $fillable = [
+        'ip', 'user_agent', 'name', 'active',
+    ];
+
     public function courses(): HasMany {
 
         return $this->hasMany(Course::class, 'course_category_id', 'id');

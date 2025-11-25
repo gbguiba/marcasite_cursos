@@ -23,6 +23,10 @@ class Enrollment extends Model {
 
     public $timestamps = true;
 
+    protected $fillable = [
+        'ip', 'user_agent', 'user_id', 'course_id',
+    ];
+
     public function user(): BelongsTo {
 
         return $this->belongsTo(User::class, 'user_id', 'id');

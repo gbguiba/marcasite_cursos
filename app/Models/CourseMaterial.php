@@ -20,6 +20,10 @@ class CourseMaterial extends Model {
 
     public $timestamps = true;
 
+    protected $fillable = [
+        'ip', 'user_agent', 'name', 'description', 'path',
+    ];
+
     public function course(): BelongsTo {
 
         return $this->belongsTo(Course::class, 'course_id', 'id');

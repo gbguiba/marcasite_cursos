@@ -23,6 +23,11 @@ class Course extends Model {
 
     public $timestamps = true;
 
+    protected $fillable = [
+        'ip', 'user_agent', 'name', 'price', 'places', 'registration_start', 'registration_end',
+        'description', 'thumbnail_path', 'active',
+    ];
+
     public function courseCategory(): BelongsTo {
 
         return $this->belongsTo(CourseCategory::class, 'course_category_id', 'id');

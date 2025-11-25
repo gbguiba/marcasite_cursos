@@ -19,6 +19,10 @@ class Payment extends Model {
 
     public $timestamps = true;
 
+    protected $fillable = [
+        'ip', 'user_agent', 'status',
+    ];
+
     public function enrollment(): BelongsTo {
 
         return $this->belongsTo(Enrollment::class, 'enrollment_id', 'id');
