@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,5 +17,20 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+
+        $exceptions->render(function (Throwable $throwable, Request $request) {
+
+            if ($request->is('api/*')) {
+
+                $code = method_exists($throwable, 'getStatusCode') ? $throwable->getStatusCode() : 500;
+                $message = $code === 500 ? 'Erro interno. Tente novamente mais tarde.' : $throwable->getMessage();
+                
+                return response()->json([
+                    'message' => $message,
+                ], $code);
+
+            }
+            
+        });
+
     })->create();
