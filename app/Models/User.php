@@ -8,10 +8,11 @@ use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Enrollment;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model {
 
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'users';
 

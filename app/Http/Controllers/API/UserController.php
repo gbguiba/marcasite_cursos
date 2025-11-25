@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller {
 
@@ -19,6 +20,16 @@ class UserController extends Controller {
     public function show(Request $request, User $user): UserResource {
 
         return new UserResource($user->load('profile'));
+
+    }
+
+    public function destroy(Request $request, User $user): JsonResponse {
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'Usuário excluído.',
+        ], 200);
 
     }
 
