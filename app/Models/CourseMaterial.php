@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class CourseMaterial extends Model {
 
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'course_materials';
     

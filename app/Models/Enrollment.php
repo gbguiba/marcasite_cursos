@@ -9,10 +9,11 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Payment;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Enrollment extends Model {
 
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'enrollments';
 

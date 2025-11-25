@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Enrollment;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Payment extends Model {
+
+    use HasUuids;
 
     protected $table = 'payments';
 
