@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Enrollment;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class User extends Model {
 
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasUuids;
 
     protected $table = 'users';
 
@@ -21,6 +22,10 @@ class User extends Model {
     public $incrementing = false;
 
     public $timestamps = true;
+
+    protected $fillable = [
+        'ip', 'user_agent', 'type', 'email', 'password', 'active',
+    ];
 
     public function profile(): HasOne {
         

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Profile extends Model {
 
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'profiles';
 
@@ -18,6 +19,10 @@ class Profile extends Model {
     public $incrementing = false;
 
     public $timestamps = true;
+
+    protected $fillable = [
+        'ip', 'user_agent', 'name', 'photo', 'cpf',
+    ];
 
     public function user(): BelongsTo {
 
