@@ -23,7 +23,7 @@ class CourseResource extends JsonResource {
             'description' => $this->description,
             'thumbnail' => $this->thumbnail,
             'active' => (bool) $this->active,
-            'materials' => CourseMaterialResource::collection($this->whenLoaded('courseMaterial')),
+            'materials' => CourseMaterialResource::collection($this->whenLoaded('courseMaterials')),
         ];
 
     }

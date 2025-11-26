@@ -35,7 +35,7 @@ class Course extends Model {
 
     }
 
-    public function courseMaterial(): HasMany {
+    public function courseMaterials(): HasMany {
         
         return $this->hasMany(CourseMaterial::class, 'course_id', 'id');
 

@@ -19,13 +19,13 @@ class CourseController extends Controller {
     
     public function index(): AnonymousResourceCollection {
 
-        return CourseResource::collection(Course::with(['courseCategory', 'courseMaterial'])->paginate(10));
+        return CourseResource::collection(Course::with(['courseCategory', 'courseMaterials'])->paginate(10));
     
     }
 
     public function show(Request $request, Course $course): CourseResource {
         
-        return new CourseResource($course->load(['courseCategory', 'courseMaterial']));
+        return new CourseResource($course->load(['courseCategory', 'courseMaterials']));
 
     }
 
