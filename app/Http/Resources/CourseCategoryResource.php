@@ -11,7 +11,7 @@ class CourseCategoryResource extends JsonResource {
 
         return [
             'id' => $this->id,
-            'created_at' => $this->created_at,
+            'createdAt' => $this->created_at,
             'name' => $this->name,
             'active' => (bool) $this->active,
         ];
