@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CourseUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CourseController extends Controller {
     
@@ -91,6 +92,29 @@ class CourseController extends Controller {
         return response()->json([
             'message' => 'Curso atualizado com sucesso.',
         ], 200);
+
+    }
+
+    public function removeThumbnail(Request $request, Course $course): JsonResponse {
+
+        if ($course->thumbnail !== null && Storage::disk('public')->exists($course->thumbnail)) {
+
+            Storage::disk('public')->delete($course->thumbnail);
+
+            DB::transaction(function() use ($course) {
+
+                $course->thumbnail = null;
+                $course->save();
+
+            });
+
+            return response()->json([
+                'message' => 'Moldura removida com sucesso.',
+            ], 200);
+        
+        }
+
+        throw new HttpException(400, 'Não há moldura para remover.');
 
     }
 

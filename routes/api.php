@@ -22,3 +22,4 @@ Route::get('api/courses/{course}', [CourseController::class, 'show']);
 Route::delete('api/courses/{course}', [CourseController::class, 'destroy']);
 Route::post('api/courses', [CourseController::class, 'store']);
 Route::put('api/courses/{course}', [CourseController::class, 'update']);
+Route::delete('api/courses/{course}/thumbnail', [CourseController::class, 'removeThumbnail']);
