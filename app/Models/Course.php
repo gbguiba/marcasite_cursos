@@ -10,10 +10,11 @@ use App\Models\CourseMaterial;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Enrollment;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model {
 
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'courses';
 
