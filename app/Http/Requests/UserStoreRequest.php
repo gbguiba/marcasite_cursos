@@ -21,7 +21,7 @@ class UserStoreRequest extends FormRequest {
             'password' => ['required', 'string',],
             'password_repeat' => ['required', 'same:password',],
             'name' => ['required', 'string',],
-            'photo' => ['nullable', 'file', 'max:5120', 'mimetypes:image/png,image/gif,image/jpeg,image/webp',],
+            'photo' => ['nullable', 'file', 'max:5120', 'image',],
             'cpf' => ['required', 'numeric', 'digits:11', 'unique:' . Profile::class . ',cpf',],
             'active' => ['required', 'boolean',],
         ];
@@ -44,7 +44,7 @@ class UserStoreRequest extends FormRequest {
             'name.string' => 'O nome do usuário deve ser um texto.',
             'photo.file' => 'A foto do usuário deve ser uma imagem.',
             'photo.max' => 'A foto do usuário deve ter, no máximo, 5MB.',
-            'photo.mimetypes' => 'A foto do usuário deve ser uma imagem do tipo PNG, GIF, JPEG ou WEBP.',
+            'photo.image' => 'A foto do usuário deve ser um arquivo de imagem.',
             'cpf.required' => 'Insira o CPF do usuário.',
             'cpf.numeric' => 'O CPF do usuário deve possuir somente números.',
             'cpf.digits' => 'O CPF do usuário deve possuir :digits digitos.',

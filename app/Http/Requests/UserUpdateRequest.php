@@ -21,7 +21,7 @@ class UserUpdateRequest extends FormRequest {
             'password' => ['nullable', 'string',],
             'password_repeat' => ['required_with:password', 'same:password',],
             'name' => ['nullable', 'string',],
-            'photo' => ['nullable', 'file', 'max:5120', 'mimetypes:image/png,image/gif,image/jpeg,image/webp',],
+            'photo' => ['nullable', 'file', 'max:5120', 'image',],
             'cpf' => ['nullable', 'numeric', 'digits:11', Rule::unique('profiles', 'cpf')->ignore($this->user->profile->id),],
             'active' => ['nullable', 'boolean',],
         ];
@@ -40,7 +40,7 @@ class UserUpdateRequest extends FormRequest {
             'name.string' => 'O nome do usuário deve ser um texto.',
             'photo.file' => 'A foto do usuário deve ser uma imagem.',
             'photo.max' => 'A foto do usuário deve ter, no máximo, 5MB.',
-            'photo.mimetypes' => 'A foto do usuário deve ser uma imagem do tipo PNG, GIF, JPEG ou WEBP.',
+            'photo.image' => 'A foto do usuário deve ser um arquivo de imagem.',
             'cpf.numeric' => 'O CPF do usuário deve possuir somente números.',
             'cpf.digits' => 'O CPF do usuário deve possuir :digits digitos.',
             'cpf.unique' => 'O CPF especificado já está sendo utilizado.',
