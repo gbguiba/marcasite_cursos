@@ -16,13 +16,13 @@ class UserUpdateRequest extends FormRequest {
     public function rules(): array {
 
         return [
-            'type' => ['nullable', 'bail', Rule::in(['user', 'admin']), 'bail',],
-            'email' => ['nullable', 'bail', 'email:strict,rfc', 'bail', Rule::unique('users', 'email')->ignore($this->user->id), 'bail',],
-            'password' => ['nullable', 'bail', 'string', 'bail',],
-            'password_repeat' => ['required_with:password', 'bail', 'same:password', 'bail',],
-            'name' => ['nullable', 'bail', 'string', 'bail',],
-            'photo' => ['nullable', 'bail', 'file', 'bail', 'max:5120', 'bail', 'mimetypes:image/png,image/gif,image/jpeg,image/webp', 'bail',],
-            'cpf' => ['nullable', 'bail', 'numeric', 'bail', 'digits:11', 'bail', Rule::unique('profiles', 'cpf')->ignore($this->user->profile->id), 'bail',],
+            'type' => ['nullable', Rule::in(['user', 'admin']),],
+            'email' => ['nullable', 'email:strict,rfc', Rule::unique('users', 'email')->ignore($this->user->id),],
+            'password' => ['nullable', 'string',],
+            'password_repeat' => ['required_with:password', 'same:password',],
+            'name' => ['nullable', 'string',],
+            'photo' => ['nullable', 'file', 'max:5120', 'mimetypes:image/png,image/gif,image/jpeg,image/webp',],
+            'cpf' => ['nullable', 'numeric', 'digits:11', Rule::unique('profiles', 'cpf')->ignore($this->user->profile->id),],
         ];
     
     }
