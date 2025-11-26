@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\CourseCategoryStoreRequest;
 use App\Http\Requests\CourseCategoryUpdateRequest;
+use Illuminate\Support\Arr;
 
 class CourseCategoryController extends Controller {
     
@@ -26,7 +27,7 @@ class CourseCategoryController extends Controller {
         $validated['ip'] = $request->ip();
         $validated['user_agent'] = $request->userAgent();
         
-        CourseCategory::create($validated);
+        CourseCategory::create(Arr::only($validated, (new CourseCategory())->getFillable()));
 
         return response()->json([
             'message' => 'Categoria criada com sucesso.',
@@ -47,7 +48,7 @@ class CourseCategoryController extends Controller {
         $validated['ip'] = $request->ip();
         $validated['user_agent'] = $request->userAgent();
 
-        $courseCategory->update($validated);
+        $courseCategory->update(Arr::only($validated, $courseCategory->getFillable()));
 
         return response()->json([
             'message' => 'Categoria atualizada com sucesso.',
