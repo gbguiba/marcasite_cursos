@@ -10,6 +10,7 @@ Route::get('api/users/{user}', [UserController::class, 'show']);
 Route::delete('api/users/{user}', [UserController::class, 'destroy']);
 Route::post('api/users', [UserController::class, 'store']);
 Route::put('api/users/{user}', [UserController::class, 'update']);
+Route::delete('api/users/{user}/photo', [UserController::class, 'removePhoto']);
 
 Route::get('api/courses/categories', [CourseCategoryController::class, 'index']);
 Route::get('api/courses/categories/{courseCategory}', [CourseCategoryController::class, 'show']);

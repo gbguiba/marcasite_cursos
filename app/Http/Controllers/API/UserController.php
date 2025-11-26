@@ -15,6 +15,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserController extends Controller {
 
@@ -96,6 +97,29 @@ class UserController extends Controller {
         return response()->json([
             'message' => 'Usuário atualizado com sucesso.',
         ], 200);
+
+    }
+
+    public function removePhoto(Request $request, User $user): JsonResponse {
+
+        if ($user->profile->photo !== null && Storage::disk('public')->exists($user->profile->photo)) {
+
+            Storage::disk('public')->delete($user->profile->photo);
+
+            DB::transaction(function() use ($user) {
+
+                $user->profile->photo = null;
+                $user->profile->save();
+
+            });
+
+            return response()->json([
+                'message' => 'Foto removida com sucesso.',
+            ], 200);
+
+        }
+
+        throw new HttpException(400, 'Não há foto para remover.');
 
     }
 
