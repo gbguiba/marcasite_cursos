@@ -23,6 +23,7 @@ class UserUpdateRequest extends FormRequest {
             'name' => ['nullable', 'string',],
             'photo' => ['nullable', 'file', 'max:5120', 'mimetypes:image/png,image/gif,image/jpeg,image/webp',],
             'cpf' => ['nullable', 'numeric', 'digits:11', Rule::unique('profiles', 'cpf')->ignore($this->user->profile->id),],
+            'active' => ['nullable', 'boolean',],
         ];
     
     }
@@ -43,6 +44,7 @@ class UserUpdateRequest extends FormRequest {
             'cpf.numeric' => 'O CPF do usuário deve possuir somente números.',
             'cpf.digits' => 'O CPF do usuário deve possuir :digits digitos.',
             'cpf.unique' => 'O CPF especificado já está sendo utilizado.',
+            'active.boolean' => 'O status do usuário é inválido.',
         ];
 
     }

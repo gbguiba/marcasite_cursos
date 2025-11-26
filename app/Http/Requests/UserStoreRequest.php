@@ -23,6 +23,7 @@ class UserStoreRequest extends FormRequest {
             'name' => ['required', 'string',],
             'photo' => ['nullable', 'file', 'max:5120', 'mimetypes:image/png,image/gif,image/jpeg,image/webp',],
             'cpf' => ['required', 'numeric', 'digits:11', 'unique:' . Profile::class . ',cpf',],
+            'active' => ['required', 'boolean',],
         ];
     
     }
@@ -48,6 +49,8 @@ class UserStoreRequest extends FormRequest {
             'cpf.numeric' => 'O CPF do usuário deve possuir somente números.',
             'cpf.digits' => 'O CPF do usuário deve possuir :digits digitos.',
             'cpf.unique' => 'O CPF especificado já está sendo utilizado.',
+            'active.required' => 'Especifique se o usuário será criado já ativado ou desativado.',
+            'active.boolean' => 'O status do usuário é inválido.',
         ];
 
     }
