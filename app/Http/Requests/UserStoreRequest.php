@@ -16,13 +16,13 @@ class UserStoreRequest extends FormRequest {
     public function rules(): array {
 
         return [
-            'type' => ['required', 'bail', Rule::in(['user', 'admin']), 'bail',],
-            'email' => ['required', 'bail', 'email:strict,rfc', 'bail', 'unique:' . User::class . ',email', 'bail',],
-            'password' => ['required', 'bail', 'string', 'bail',],
-            'password_repeat' => ['required', 'bail', 'same:password', 'bail',],
-            'name' => ['required', 'bail', 'string', 'bail',],
-            'photo' => ['nullable', 'bail', 'file', 'bail', 'max:5120', 'bail', 'mimetypes:image/png,image/gif,image/jpeg,image/webp', 'bail',],
-            'cpf' => ['required', 'bail', 'numeric', 'bail', 'digits:11', 'bail', 'unique:' . Profile::class . ',cpf', 'bail',],
+            'type' => ['required', Rule::in(['user', 'admin']),],
+            'email' => ['required', 'email:strict,rfc', 'unique:' . User::class . ',email',],
+            'password' => ['required', 'string',],
+            'password_repeat' => ['required', 'same:password',],
+            'name' => ['required', 'string',],
+            'photo' => ['nullable', 'file', 'max:5120', 'mimetypes:image/png,image/gif,image/jpeg,image/webp',],
+            'cpf' => ['required', 'numeric', 'digits:11', 'unique:' . Profile::class . ',cpf',],
         ];
     
     }
