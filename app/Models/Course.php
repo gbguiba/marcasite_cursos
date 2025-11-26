@@ -26,7 +26,7 @@ class Course extends Model {
 
     protected $fillable = [
         'ip', 'user_agent', 'name', 'price', 'places', 'registration_start', 'registration_end',
-        'description', 'thumbnail_path', 'active',
+        'description', 'thumbnail', 'active', 'course_category_id',
     ];
 
     public function courseCategory(): BelongsTo {

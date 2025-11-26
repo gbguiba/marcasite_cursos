@@ -21,7 +21,7 @@ class CourseFactory extends Factory {
             'places' => fake()->numberBetween(10, 500),
             'registration_start' => fake()->dateTimeBetween(Carbon::now(), Carbon::now()->addDays(10)),
             'registration_end' => fake()->dateTimeBetween(Carbon::now()->addDays(5), Carbon::now()->addDays(15)),
-            'thumbnail_path' => null,
+            'thumbnail' => null,
             'description' => fake()->paragraphs(2, true),
             'active' => fake()->boolean(),
         ];
