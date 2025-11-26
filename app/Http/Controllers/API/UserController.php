@@ -55,8 +55,8 @@ class UserController extends Controller {
 
         DB::transaction(function() use ($request, $validated) {
             
-            $user = User::create(Arr::only($validated, $user->getFillable()));
-            $user->profile()->create(Arr::only($validated, $user->profile->getFillable()));
+            $user = User::create(Arr::only($validated, (new User())->getFillable()));
+            $user->profile()->create(Arr::only($validated, (new Profile())->getFillable()));
         
         });
 
