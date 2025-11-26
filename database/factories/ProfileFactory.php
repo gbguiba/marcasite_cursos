@@ -16,7 +16,7 @@ class ProfileFactory extends Factory {
             'user_agent' => fake()->userAgent(),
             'user_id' => null,
             'name' => null,
-            'photo_path' => null,
+            'photo' => null,
             'cpf' => fake()->cpf(false),
         ];
 

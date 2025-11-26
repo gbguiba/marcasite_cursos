@@ -11,7 +11,7 @@ class ProfileResource extends JsonResource {
         
         return [
             'name' => $this->name,
-            'photoPath' => $this->photo_path,
+            'photo' => $this->photo,
             'cpf' => $this->cpf,
         ];
     
