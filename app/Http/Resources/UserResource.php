@@ -14,7 +14,7 @@ class UserResource extends JsonResource {
             'id' => $this->id,
             'type' => $this->type,
             'email' => $this->email,
-            'active' => $this->active,
+            'active' => (bool) $this->active,
             'profile' => new ProfileResource($this->profile),
         ];
     
