@@ -76,21 +76,21 @@ class UserController extends Controller {
         if (isset($validated['photo'])) {
             
             $validated['photo'] = $validated['photo']->store('photos', 'public');
+
+            if ($user->profile->photo !== null && Storage::disk('public')->exists($user->profile->photo)) {
+
+                Storage::disk('public')->delete($user->profile->photo);
+
+            }
         
         }
         
         DB::transaction(function() use ($request, $user, $validated) {
 
             $user->update(Arr::only($validated, $user->getFillable()));
-
-            if ($user->profile->photo !== null && Storage::disk('public')->exists($user->profile->photo)) {
-                
-                Storage::disk('public')->delete($user->profile->photo);
-            
-            }
             
             $user->profile()->update(Arr::only($validated, $user->profile->getFillable()));
-
+        
         });
 
         return response()->json([
