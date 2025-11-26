@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Profile;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller {
 
@@ -43,7 +46,6 @@ class UserController extends Controller {
 
         $validated['ip'] = $request->ip();
         $validated['user_agent'] = $request->userAgent();
-        $validated['password'] = bcrypt($validated['password']);
 
         if (isset($validated['photo'])) {
 
@@ -53,13 +55,46 @@ class UserController extends Controller {
 
         DB::transaction(function() use ($request, $validated) {
             
-            $user = User::create($validated);
-            $user->profile()->create($validated);
+            $user = User::create(Arr::only($validated, $user->getFillable()));
+            $user->profile()->create(Arr::only($validated, $user->profile->getFillable()));
         
         });
 
         return response()->json([
             'message' => 'Usuário criado com sucesso.',
+        ], 201);
+
+    }
+
+    public function update(UserUpdateRequest $request, User $user): JsonResponse {
+
+        $validated = $request->validated();
+
+        $validated['ip'] = $request->ip();
+        $validated['user_agent'] = $request->userAgent();
+
+        if (isset($validated['photo'])) {
+            
+            $validated['photo'] = $validated['photo']->store('photos', 'public');
+        
+        }
+        
+        DB::transaction(function() use ($request, $user, $validated) {
+
+            $user->update(Arr::only($validated, $user->getFillable()));
+
+            if ($user->profile->photo !== null && Storage::disk('public')->exists($user->profile->photo)) {
+                
+                Storage::disk('public')->delete($user->profile->photo);
+            
+            }
+            
+            $user->profile()->update(Arr::only($validated, $user->profile->getFillable()));
+
+        });
+
+        return response()->json([
+            'message' => 'Usuário atualizado com sucesso.',
         ], 200);
 
     }

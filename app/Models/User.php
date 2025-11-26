@@ -10,6 +10,7 @@ use App\Models\Enrollment;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Model {
 
@@ -36,6 +37,19 @@ class User extends Model {
     public function enrollments(): HasMany {
 
         return $this->hasMany(Enrollment::class, 'user_id', 'id');
+
+    }
+
+    protected function password(): Attribute {
+
+        return Attribute::make(
+
+            set: function(string $value) {
+
+                return bcrypt($value);
+
+            }
+        );
 
     }
 
