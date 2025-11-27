@@ -22,7 +22,7 @@ class CourseMaterial extends Model {
     public $timestamps = true;
 
     protected $fillable = [
-        'ip', 'user_agent', 'name', 'description', 'path',
+        'ip', 'user_agent', 'name', 'description', 'path', 'course_id',
     ];
 
     public function course(): BelongsTo {

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CourseCategoryController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\CourseMaterialController;
 
 Route::get('api/users', [UserController::class, 'index']);
 Route::get('api/users/{user}', [UserController::class, 'show']);
@@ -17,6 +18,12 @@ Route::get('api/courses/categories/{courseCategory}', [CourseCategoryController:
 Route::delete('api/courses/categories/{courseCategory}', [CourseCategoryController::class, 'destroy']);
 Route::post('api/courses/categories', [CourseCategoryController::class, 'store']);
 Route::put('api/courses/categories/{courseCategory}', [CourseCategoryController::class, 'update']);
+
+Route::get('api/courses/materials', [CourseMaterialController::class, 'index']);
+Route::get('api/courses/materials/{courseMaterial}', [CourseMaterialController::class, 'show']);
+Route::delete('api/courses/materials/{courseMaterial}', [CourseMaterialController::class, 'destroy']);
+Route::post('api/courses/materials', [CourseMaterialController::class, 'store']);
+Route::put('api/courses/materials/{courseMaterial}', [CourseMaterialController::class, 'update']);
 
 Route::get('api/courses', [CourseController::class, 'index']);
 Route::get('api/courses/{course}', [CourseController::class, 'show']);
