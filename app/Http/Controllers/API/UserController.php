@@ -16,6 +16,8 @@ use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Mail\AccountConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller {
 
@@ -54,12 +56,24 @@ class UserController extends Controller {
 
         }
 
-        DB::transaction(function() use ($request, $validated) {
+        $user = DB::transaction(function() use ($request, $validated) {
             
             $user = User::create(Arr::only($validated, (new User())->getFillable()));
             $user->profile()->create(Arr::only($validated, (new Profile())->getFillable()));
         
+            return $user;
+
         });
+
+        if ((bool) $validated['email_confirmation'] === true) {
+
+            dispatch(function() use ($user, $validated) {
+                
+                Mail::to($user->email)->send(new AccountConfirmationMail($user, $validated['password']));
+            
+            })->onQueue('confirmation');
+        
+        }
 
         return response()->json([
             'message' => 'Usuário criado com sucesso.',

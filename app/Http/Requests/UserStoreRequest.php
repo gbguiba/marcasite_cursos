@@ -24,6 +24,7 @@ class UserStoreRequest extends FormRequest {
             'photo' => ['nullable', 'file', 'max:5120', 'image',],
             'cpf' => ['required', 'numeric', 'digits:11', 'unique:' . Profile::class . ',cpf',],
             'active' => ['required', 'boolean',],
+            'email_confirmation' => ['required', 'boolean',],
         ];
     
     }
@@ -51,6 +52,8 @@ class UserStoreRequest extends FormRequest {
             'cpf.unique' => 'O CPF especificado já está sendo utilizado.',
             'active.required' => 'Especifique se o usuário será criado já ativado ou desativado.',
             'active.boolean' => 'O status do usuário é inválido.',
+            'email_confirmation.required' => 'Especifique se o novo usuário deve receber um e-mail de confirmação após a criação da conta.',
+            'email_confirmation.boolean' => 'A especificação de confirmação por e-mail é inválida.',
         ];
 
     }
