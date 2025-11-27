@@ -26,6 +26,7 @@ Route::delete('api/courses/materials/{courseMaterial}', [CourseMaterialControlle
 Route::post('api/courses/materials', [CourseMaterialController::class, 'store']);
 Route::put('api/courses/materials/{courseMaterial}', [CourseMaterialController::class, 'update']);
 
+Route::get('api/courses/{course}/enrollments', [EnrollmentController::class, 'index']);
 Route::get('api/courses/enrollments/{enrollment}', [EnrollmentController::class, 'show']);
 Route::delete('api/courses/enrollments/{enrollment}', [EnrollmentController::class, 'destroy']);
 Route::post('api/courses/enrollments', [EnrollmentController::class, 'store']);

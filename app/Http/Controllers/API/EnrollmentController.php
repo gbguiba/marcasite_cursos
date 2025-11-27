@@ -18,8 +18,15 @@ use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\EnrollmentStoreRequest;
 use App\Models\User;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EnrollmentController extends Controller {
+
+    public function index(Request $request, Course $course): AnonymousResourceCollection {
+        
+        return EnrollmentResource::collection(($course->enrollments()->paginate(10))->load(['user', 'course']));
+    
+    }
     
     public function show(Enrollment $enrollment): EnrollmentResource {
         
