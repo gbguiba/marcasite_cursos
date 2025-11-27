@@ -7,11 +7,10 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     
     public function up(): void {
+        
+        Schema::table('enrollments', function (Blueprint $table) {
 
-        Schema::table('payments', function (Blueprint $table) {
-
-            $table->string('ip');
-            $table->text('user_agent');
+            $table->softDeletes();
 
         });
     
@@ -19,11 +18,10 @@ return new class extends Migration {
     
     public function down(): void {
 
-        Schema::table('payments', function (Blueprint $table) {
+        Schema::table('enrollments', function (Blueprint $table) {
 
-            $table->dropColumn('ip');
-            $table->dropColumn('user_agent');
-        
+            $table->dropColumn('deleted_at');
+
         });
     
     }

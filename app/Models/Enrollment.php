@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 use App\Models\Course;
-use App\Models\Payment;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Enrollment extends Model {
 
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'enrollments';
 
@@ -24,7 +24,8 @@ class Enrollment extends Model {
     public $timestamps = true;
 
     protected $fillable = [
-        'ip', 'user_agent', 'user_id', 'course_id',
+        'ip', 'user_agent', 'user_id', 'course_id', 'method', 'currency', 'transaction_amount',
+        'idempotency_key', 'pix_email', 'pix_expiration',
     ];
 
     public function user(): BelongsTo {
@@ -37,12 +38,6 @@ class Enrollment extends Model {
         
         return $this->belongsTo(Course::class, 'course_id', 'id');
     
-    }
-
-    public function payments(): HasMany {
-        
-        return $this->hasMany(Payment::class, 'enrollment_id', 'id');
-
     }
 
 }

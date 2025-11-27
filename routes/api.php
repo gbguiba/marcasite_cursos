@@ -5,6 +5,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CourseCategoryController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\CourseMaterialController;
+use App\Http\Controllers\API\EnrollmentController;
 
 Route::get('api/users', [UserController::class, 'index']);
 Route::get('api/users/{user}', [UserController::class, 'show']);
@@ -24,6 +25,11 @@ Route::get('api/courses/materials/{courseMaterial}', [CourseMaterialController::
 Route::delete('api/courses/materials/{courseMaterial}', [CourseMaterialController::class, 'destroy']);
 Route::post('api/courses/materials', [CourseMaterialController::class, 'store']);
 Route::put('api/courses/materials/{courseMaterial}', [CourseMaterialController::class, 'update']);
+
+Route::get('api/courses/enrollments/{enrollment}', [EnrollmentController::class, 'show']);
+Route::delete('api/courses/enrollments/{enrollment}', [EnrollmentController::class, 'destroy']);
+Route::post('api/courses/enrollments', [EnrollmentController::class, 'store']);
+Route::post('api/courses/enrollments/{enrollment}', [EnrollmentController::class, 'update'])->name('api.enrollments.webhook');
 
 Route::get('api/courses', [CourseController::class, 'index']);
 Route::get('api/courses/{course}', [CourseController::class, 'show']);
