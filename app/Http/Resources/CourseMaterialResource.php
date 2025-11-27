@@ -15,7 +15,7 @@ class CourseMaterialResource extends JsonResource {
             'name' => $this->name,
             'description' => $this->description,
             'path' => $this->path,
-            'course' => new CourseResource($this->course),
+            'course' => new CourseResource($this->whenLoaded('course')),
         ];
 
     }

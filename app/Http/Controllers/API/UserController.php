@@ -23,7 +23,20 @@ class UserController extends Controller {
 
     public function index(Request $request): AnonymousResourceCollection {
         
-        return UserResource::collection(User::with('profile')->paginate(10));
+        $users = User::with('profile');
+
+        if ($request->has('search')) {
+
+            $users->where('email', 'like', "%{$request->query('search')}%")
+                  ->orWhereHas('profile', function ($query) use ($request) {
+                
+                    return $query->where('name', 'like', "%{$request->query('search')}%");
+                
+                });
+
+        }
+
+        return UserResource::collection($users->paginate(10));
     
     }
 

@@ -14,8 +14,18 @@ use Illuminate\Support\Arr;
 
 class CourseCategoryController extends Controller {
     
-    public function index(): AnonymousResourceCollection {
+    public function index(Request $request): AnonymousResourceCollection {
 
+        $categories = null;
+
+        if ($request->has('search')) {
+
+            $categories = CourseCategory::where('name', 'like', "%{$request->query('search')}%");
+
+            return CourseCategoryResource::collection($categories->paginate(10));
+
+        }
+        
         return CourseCategoryResource::collection(CourseCategory::paginate(10));
 
     }

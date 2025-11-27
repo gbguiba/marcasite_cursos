@@ -16,9 +16,18 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseMaterialController extends Controller {
     
-    public function index(): AnonymousResourceCollection {
+    public function index(Request $request): AnonymousResourceCollection {
+
+        $materials = CourseMaterial::with(['course']);
+
+        if ($request->has('search')) {
+
+            $materials->where('name', 'like', "%{$request->query('search')}%")
+                      ->orWhere('description', 'like', "%{$request->query('search')}%");
+
+        }
         
-        return CourseMaterialResource::collection(CourseMaterial::paginate(10));
+        return CourseMaterialResource::collection($materials->paginate(10));
     
     }
     

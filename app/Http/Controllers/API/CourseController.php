@@ -17,9 +17,20 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CourseController extends Controller {
     
-    public function index(): AnonymousResourceCollection {
+    public function index(Request $request): AnonymousResourceCollection {
 
-        return CourseResource::collection(Course::with(['courseCategory', 'courseMaterials'])->paginate(10));
+        $courses = Course::with(['courseCategory', 'courseMaterials']);
+
+        if ($request->has('search')) {
+
+            $courses->where('name', 'like', "%{$request->query('search')}%")
+                    ->orWhere('price', 'like', "%{$request->query('search')}%")
+                    ->orWhere('places', 'like', "%{$request->query('search')}%")
+                    ->orWhere('description', 'like', "%{$request->query('search')}%");
+
+        }
+
+        return CourseResource::collection($courses->paginate(10));
     
     }
 
