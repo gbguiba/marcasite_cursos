@@ -1,68 +1,111 @@
-# Marcasite Cursos – API (Laravel 11)
+# 📘 Marcasite Cursos -- API Laravel
 
-API desenvolvida como parte de um desafio técnico para demonstrar domínio em Laravel, arquitetura limpa, modelagem de dados, integrações externas e boas práticas de desenvolvimento Back-end.
+Bem-vindo ao repositório do **Marcasite Cursos**, um projeto
+desenvolvido como **teste técnico Back-end/PHP/Laravel** --- focado no
+que realmente importa: arquitetura limpa, organização e domínio do
+ecossistema Laravel.\
+Nada de firulas, só o poder bruto do código bem feito. ⚡
 
-O foco do projeto é apresentar uma estrutura sólida, organizada e escalável — sem incluir front-end Vue ou funcionalidades periféricas que não fazem parte do escopo essencial de uma prova para back-end.
+------------------------------------------------------------------------
 
----
+## 🎯 Objetivo do Projeto
 
-## 🚀 Tecnologias & Ferramentas
+Demonstrar habilidades práticas em: - Arquitetura de APIs REST com
+Laravel\
+- Boas práticas de organização e manutenção\
+- Validações robustas\
+- Integrações externas (Mercado Pago)\
+- Estrutura completa do ecossistema Laravel
 
-- **PHP 8.2+**
-- **Laravel 11**
-- **MySQL**
-- **Mercado Pago SDK (sandbox)**
-- **Eloquent ORM**
-- **Form Requests**
-- **API Resources**
-- **Jobs & Mailables**
-- **Seeders / Factories**
-- **Middlewares**
-- **Query Builder avançado para buscas**
+------------------------------------------------------------------------
 
----
+## ✅ Funcionalidades Implementadas
 
-## 📦 Funcionalidades Implementadas
+### 🧩 Estrutura de Código
 
-### 🔹 Autenticação
-- Sistema de login usando **sessions**
-- Proteção de rotas via middleware `auth`
+-   Actions organizando regras de negócio\
+-   Controllers limpos e objetivos\
+-   Rotas estruturadas\
+-   Requests customizadas com validação completa\
+-   Resources para formatação de resposta\
+-   Middlewares customizados\
+-   Utilitários internos
 
-### 🔹 Estrutura da API
-- Controllers organizados em **Actions** (arquitetura clara e modular)
-- Rotas bem segmentadas (`/auth`, `/courses`, `/enrollments`, etc.)
-- Lógica isolada em classes específicas para maior desacoplamento
+### 🛠️ Infraestrutura e Banco
 
-### 🔹 Validações
-- FormRequests customizados com validação padronizada
-- Mensagens claras e consistentes
+-   Migrations completas\
+-   Factories\
+-   Seeders com dados realistas\
+-   Relacionamentos bem definidos
 
-### 🔹 Banco de Dados
-- **Migrations** completas
-- **Factories** para geração de dados reais
-- **Seeders** para popular automaticamente cursos, usuários e inscrições
+### 📬 Funcionalidades Adicionais
 
-### 🔹 Integração Mercado Pago
-- Criação de pagamentos no **modo sandbox**
-- Retorno estruturado para simulação de compra
-- Serviço próprio encapsulando regras de integração
+-   Job de envio de e-mail para confirmação\
+-   Templates de e-mail\
+-   Integração com Mercado Pago (sandbox)
 
-### 🔹 Busca Avançada
-Implementada manualmente usando Query Builder e filtros dinâmicos.  
-*(Sem Laravel Scout — proposital para demonstrar domínio direto das queries.)*
+------------------------------------------------------------------------
 
-### 🔹 Envios de E-mail
-- Mailable + Job assíncrono para confirmação de criação de conta
+## ❌ Funcionalidades **não incluídas**
 
-### 🔹 Utilitários Internos
-- Classes helpers específicas criadas para o projeto
-- Padronização de respostas e erros
+Esses pontos fogem do escopo de um teste de Back-end:
 
----
+-   ✘ Interface Vue.js\
+-   ✘ Laravel Scout para buscas\
+-   ✘ Exportação PDF/Excel (feature de produto, não de teste)
 
-## 🧪 Como Rodar o Projeto
+------------------------------------------------------------------------
 
-### 1. Clone o repositório
-```bash
+## 🧰 Tecnologias Utilizadas
+
+-   **PHP 8.2+**\
+-   **Laravel 11**\
+-   **MySQL**\
+-   **Mercado Pago SDK (sandbox)**\
+-   **Mailtrap/SMTP para testes**
+
+------------------------------------------------------------------------
+
+## 🚀 Como Rodar o Projeto
+
+``` bash
 git clone https://github.com/gbguiba/marcasite_cursos
-cd marcasite_cursos
+
+composer install
+
+cp .env.example .env
+
+php artisan key:generate
+```
+
+Configure suas credenciais no `.env`:
+
+-   Banco MySQL\
+-   Mercado Pago (Public Key + Access Token sandbox)\
+-   Mailtrap/SMTP
+
+Depois:
+
+``` bash
+php artisan migrate --seed
+php artisan serve
+```
+
+A API estará rodando em:\
+**http://localhost:8000**
+
+**Senhas dos usuários/administradores: "123456"**
+
+------------------------------------------------------------------------
+
+## 📂 Repositório
+
+🔗 https://github.com/gbguiba/marcasite_cursos
+
+------------------------------------------------------------------------
+
+## ⭐ Observação Final
+
+O foco aqui foi entregar **qualidade**, **organização**, **clareza** e
+**boas práticas de Laravel** --- exatamente o que se espera de um
+desenvolvedor back-end. 🚀
