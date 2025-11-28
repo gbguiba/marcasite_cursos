@@ -14,6 +14,7 @@ use App\Http\Requests\CourseUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller {
     

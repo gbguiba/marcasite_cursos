@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 class UserFactory extends Factory {
@@ -17,7 +16,7 @@ class UserFactory extends Factory {
             'user_agent' => fake()->userAgent(),
             'type' => null,
             'email' => fake()->unique()->safeEmail(),
-            'password' => Hash::make('123456'),
+            'password' => '123456',
             'active' => fake()->boolean(),
         ];
 

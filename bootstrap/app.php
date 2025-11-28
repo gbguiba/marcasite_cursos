@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
 
@@ -28,9 +28,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 return response()->json([
                     'message' => $message,
                 ], $code);
-
+                
             }
-            
+
         });
 
     })->create();

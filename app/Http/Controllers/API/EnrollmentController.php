@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\EnrollmentStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 class EnrollmentController extends Controller {
 
@@ -42,7 +43,7 @@ class EnrollmentController extends Controller {
         $validated['user_agent'] = $request->userAgent();
         
         $course = Course::where('id', '=', $validated['course_id'])->first();
-        $user = User::where('id', '=', $validated['user_id'])->first();
+        $user = Auth::user();
 
         $enrollments = Enrollment::where('user_id', '=', $user->id)
                                  ->where('course_id', '=', $course->id)
